@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html>
    <body>
+	
    
-      <form action="{{ url_for ('farm') }}" method="post" enctype="multipart/form-data">
+      <form action="{{ url_for (farm/{{ farmer.id }}) }}" method="get" enctype="multipart/form-data">
 
-		<table class="table">
-			<tr>
-				<th>Name</th>
-				<th>Location</th>
-				<th>Product</th>
-			</tr>
+		<h3> <br>
+			<p>Farm {{ farmer.name }}<br>
 
-			{% for farm in farmers %}
-			<tr>
-				<td>{{ farm.name }}</td>
-				<td>{{ farm.location }}</td>
-				<td>${{ farm.product }}</td>
-			</tr>
+			{% for f in farmer %}
+				<tr>
+					<td>{{ f.name }}</td>
+					<td>{{ f.location }}</td>
+					<td>{{ f.product }}</td>
+				</tr>
 			{% endfor %}
-		</table>
+
+			</p>
+		  </h3>	
 
       
    </body>

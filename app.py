@@ -45,9 +45,9 @@ def new():
     return render_template("new.html")
 
 
-@app.route("/farm")
+@app.route("/farm/{farmer.id}")
 def farm(id):
-    farm = db.get(Farmer, id)
+    farm = Farmer.get(id)
     farm_info = []
     for fi in farm:
         farm_info.append(fi.name)
