@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+   <body>
+   
+      <form action="{{ url_for ('farm') }}" method="post" enctype="multipart/form-data">
+
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>Location</th>
+				<th>Product</th>
+			</tr>
+
+			{% for farm in farmers %}
+			<tr>
+				<td>{{ farm.name }}</td>
+				<td>{{ farm.location }}</td>
+				<td>${{ farm.product }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+
+      
+   </body>
+</html>

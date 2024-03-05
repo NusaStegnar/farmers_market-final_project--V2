@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+    <style> 
+      img {border-radius: 50%; }
+    </style>
+    <style> 
+      body { background-color: green; } 
+    </style>
+    <h1 style= "color: purple; font-size: 4.5em; font-weight: bold">WELCOME TO FARMERS MARKET</h1>
+    <style>
+      .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+   </head>
+   <body>
+      <h2>
+        You are most welcome to our website where we promote local farmers and their products.<br><br>
+        <span style='font-size:100px;'>&#129365;</span><span style='font-size:100px;'>&#129382;</span>
+        <span style='font-size:100px;'>&#128015;</span><span style='font-size:100px;'>&#128020;</span><br><br> 
+        If you are a farmer, please fill the data that our visitors will find you. <a href="{{ url_for ('new') }}">ADD FARM</a><br><br>
+        If you are a visitor, feal free to search our database for the farmers and their products.<br>
+      </h2>
+       <h3> <br>
+        <p>Farms in our market are:
+          {% for farmer in farmers %}
+          <li><a href="{{ url_for ('farm') }}">{{farmer.name}}</a></li>
+          {% endfor %}
+        </p>
+      </h3>
+      <img href="Farmers Market" src="image/market.jpg" class="center">
+   </body>
+</html>

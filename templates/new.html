@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+   <body>
+   
+      <h3>Farmers Market</h3>
+ 
+      
+      <form action="{{ url_for ('new') }}" method="post" enctype="multipart/form-data">
+         <fieldset>
+            <legend>FARM:</legend>
+               <label for = "name">Name</label><br>
+               <input type = "text" name = "name" placeholder = "Name"><br>
+               <label for = "location">Location</label><br>
+               <input type = "text" name = "location" placeholder = "Location"><br>
+               <label for = "product">Product</label><br>
+               <input type = "text" name = "product" placeholder = "Product"><br>
+               <input type = "image" src="farmers_market_env/image/farmer.jpg" placeholder = "Submit" alt="Submit" width="60" height="60">
+         </fieldset>
+      </form>
+
+      <hr/>
+      {%- for category, message in get_flashed_messages(with_categories = true) %}
+      <div class = "alert alert-danger">
+         {{ message }}
+      </div>
+      {%- endfor %}
+
+      <button onclick="">BACK TO HOMEPAGE</button><br>
+      <br>
+
+   </body>
+</html>
