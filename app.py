@@ -45,7 +45,7 @@ def new():
     return render_template("new.html")
 
 
-@app.route("/farm/{farmer.id}", methods = ["GET", "POST"])
+@app.route("/farm/<id>", methods = ["GET", "POST"])
 def farm(id):
     farm = db.session.get(Farmer, id)
     # farm_info = []
@@ -53,7 +53,7 @@ def farm(id):
     #     farm_info.append(fi.name)
     #     farm_info.append(fi.location)
     #     farm_info.append(fi.product)
-    return render_template("farm.html")
+    return render_template("farm.html", farm=farm)
     
 
 if __name__ == "__main__":

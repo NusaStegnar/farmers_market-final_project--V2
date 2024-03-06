@@ -14,7 +14,7 @@
                <input type = "text" name = "location" placeholder = "Location"><br>
                <label for = "product">Product</label><br>
                <input type = "text" name = "product" placeholder = "Product"><br>
-               <input type = "image" src="farmers_market_env/image/farmer.jpg" placeholder = "Submit" alt="Submit" width="60" height="60">
+               <input type = "image" src="{{ url_for('static', filename='image/farmer.jpg') }}" placeholder = "Submit" alt="Submit" width="60" height="60">
          </fieldset>
       </form>
 
