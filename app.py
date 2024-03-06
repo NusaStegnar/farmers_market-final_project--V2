@@ -34,7 +34,7 @@ def index():
 @app.route("/new", methods = ["GET", "POST"])
 def new():
     if request.method == "POST":
-        if not request.form["name"] or not request.form["location"]:
+        if not request.form["name"] or not request.form["location"] or not request.form["product"]:
             flash("Please enter all the fields", "error")
         else:
             farmers = Farmer(request.form["name"], request.form["location"], request.form["product"])
@@ -47,13 +47,13 @@ def new():
 
 @app.route("/farm/{farmer.id}")
 def farm(id):
-    farm = Farmer.get(id)
-    farm_info = []
-    for fi in farm:
-        farm_info.append(fi.name)
-        farm_info.append(fi.location)
-        farm_info.append(fi.product)
-    return render_template("farm.html")
+    farm = db.session.get(Farmer, id)
+    # farm_info = []
+    # for fi in farm:
+    #     farm_info.append(fi.name)
+    #     farm_info.append(fi.location)
+    #     farm_info.append(fi.product)
+    return render_template("farm.html", farm=farm)
     
 
 if __name__ == "__main__":

@@ -1,24 +1,36 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
    <body>
 	
    
-      <form action="{{ url_for (farm/{{ farmer.id }}) }}" method="get" enctype="multipart/form-data">
+      <form action="{{ url_for (/farm/{farmer.id}) }}" method="get" enctype="multipart/form-data">
 
 		<h3> <br>
 			<p>Farm {{ farmer.name }}<br>
 
-			{% for f in farmer %}
-				<tr>
-					<td>{{ f.name }}</td>
-					<td>{{ f.location }}</td>
-					<td>{{ f.product }}</td>
-				</tr>
-			{% endfor %}
+				{% for fi in farm %}
+					<p {{ fi.name }} 
+						{{ fi.location }}
+						{{ fi.product }} 
+					</p>
+
+				{% endfor %}
 
 			</p>
 		  </h3>	
 
       
    </body>
-</html>
+</html> -->
+
+<!doctype html>
+  <table border = 1>
+    {% for key, value in Farmer.items() %}
+
+    <tr>
+       <th> {{ key }} </th>
+       <td> {{ value }} </td>
+    </tr>
+
+    {% endfor %}
+ </table>
