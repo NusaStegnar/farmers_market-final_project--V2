@@ -79,7 +79,8 @@ def products():
 @app.route("/farm/<id>", methods = ["GET", "POST"])
 def farm(id):
     farm = Farmer.query.get(id)
-    return render_template("farm.html", farm=farm)
+    items = Product.query.all()
+    return render_template("farm.html", farm=farm, items=items)
     
 
 if __name__ == "__main__":

@@ -4,8 +4,14 @@
 	<h1>WELCOME TO FARM {{ farm.name.upper() }}</h1>
    <p>
       Farm {{ farm.name.upper() }} is located in {{ farm.location.upper() }}.<br>
-      It offers:
 
+   </p>
+
+   <h2>It offers:</h2>
+   <p>
+      {% for item in items %}
+          <li>{{ item.name }}</li>
+          {% endfor %}
    </p>
    </body>
 </html>
