@@ -65,10 +65,10 @@ def new():
 @app.route("/products", methods = ["GET", "POST"])
 def products():
     if request.method == "POST":
-        if not request.form["product"] or not request.form["quantity"] or not request.form["price"]:
+        if not request.form["item"] or not request.form["quantity"] or not request.form["price"]:
             flash("Please enter all the fields", "error")
         else:
-            products = Product(request.form["item"], request.form["qoantity"]), request.form["price"]
+            products = Product(request.form["item"], request.form["quantity"]), request.form["price"]
             db.session.add(products)
             db.session.commit()
             flash("Records was successfully added")
@@ -78,7 +78,7 @@ def products():
 
 @app.route("/farm/<id>", methods = ["GET", "POST"])
 def farm(id):
-    farm = db.get(Farmer, id)
+    farm = Farmer.query.get(id)
     return render_template("farm.html", farm=farm)
     
 
