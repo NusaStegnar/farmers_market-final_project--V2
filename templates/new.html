@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
+
    <body>
    
       <h3>Farmers Market</h3>
  
       
-      <form action="{{ url_for ('new') }}" method="post" enctype="multipart/form-data">
+      <form action="{{ url_for ('/new') }}" method="post" enctype="multipart/form-data">
          <fieldset>
             <legend>FARM:</legend>
                <label for = "name">Name</label><br>
                <input type = "text" name = "name" placeholder = "Name"><br>
                <label for = "location">Location</label><br>
                <input type = "text" name = "location" placeholder = "Location"><br>
-               <label for = "product">Product</label><br>
-               <input type = "text" name = "product" placeholder = "Product"><br>
+
                <input type = "image" src="{{ url_for('static', filename='image/farmer.jpg') }}" placeholder = "Submit" alt="Submit" width="60" height="60">
+         
          </fieldset>
       </form>
 
@@ -25,8 +26,12 @@
       </div>
       {%- endfor %}
 
+      <br>
+      <br>
+      <a href="{{ '/products' }}">ADD PRODUCTS</a><br>
+
       <a href="{{ '/' }}">BACK TO HOMEPAGE</a><br>
       <br>
-
+     
    </body>
 </html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+   <body>
+   
+      <h3>FarmS products</h3>
+ 
+      
+      <form action="{{ url_for ('/products') }}" method="post" enctype="multipart/form-data">
+         <fieldset>
+            <legend>PRODUCTS:</legend>
+               <label for = "name">Product</label><br>
+               <input type = "text" name = "product" placeholder = "Product"><br>
+               <label for = "quantity">Quantity</label><br>
+               <input type = "text" name = "quantity" placeholder = "Quantity"><br>
+               <label for = "price">Price</label><br>
+               <input type = "text" name = "price" placeholder = "Price"><br>
+
+               <input type = "image" src="{{ url_for('static', filename='image/cow.jpg') }}" placeholder = "Submit" alt="Submit" width="60" height="60">
+         
+         </fieldset>
+      </form>
+
+      <hr/>
+      {%- for category, message in get_flashed_messages(with_categories = true) %}
+      <div class = "alert alert-danger">
+         {{ message }}
+      </div>
+      {%- endfor %}
+
+      <br>
+      <br>
+
+      <a href="{{ '/' }}">BACK TO HOMEPAGE</a><br>
+      <br>
+     
+   </body>
+</html>

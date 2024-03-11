@@ -1,7 +1,12 @@
 from flask import Flask, render_template, request, url_for, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey, create_engine
-from sqlalchemy.orm import sessionmaker, relationship, declarative_base
+from sqlalchemy.orm import sessionmaker, relationship, declarative_base, session
+from sqlalchemy.sql import text
+import sqlalchemy as sa
+
+
+
 
 db = SQLAlchemy()
 app = Flask(__name__)
@@ -11,15 +16,27 @@ db.init_app(app)
 
 
 class Farmer(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True )
     name = db.Column(db.String(120), nullable=False)
     location = db.Column(db.String(200), nullable=False)
-    product = db.Column(db.String(100), nullable=False)
+    #farm_product = db.relationship("Product", backref="farmer", lazy=True)
 
-    def __init__(self, name, location, product):
+    def __init__(self, name, location):
         self.name = name
         self.location = location
-        self.product = product
+        
+
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    item = db.Column(db.String(200))
+    quantity = db.Column(db.Integer)
+    price = db.Column(db.Integer)
+    #parent_id = db.Column(db.Integer, db.ForeignKey("farmer.id"), nullable=False)
+
+    def __init__(self, item, quantity, price):
+        self.item = item
+        self.quantity = quantity
+        self.price = price
 
 
 with app.app_context():
@@ -34,10 +51,10 @@ def index():
 @app.route("/new", methods = ["GET", "POST"])
 def new():
     if request.method == "POST":
-        if not request.form["name"] or not request.form["location"] or not request.form["product"]:
+        if not request.form["name"] or not request.form["location"]:
             flash("Please enter all the fields", "error")
         else:
-            farmers = Farmer(request.form["name"], request.form["location"], request.form["product"])
+            farmers = Farmer(request.form["name"], request.form["location"])
             db.session.add(farmers)
             db.session.commit()
             flash("Records was successfully added")
@@ -45,14 +62,23 @@ def new():
     return render_template("new.html")
 
 
+@app.route("/products", methods = ["GET", "POST"])
+def products():
+    if request.method == "POST":
+        if not request.form["product"] or not request.form["quantity"] or not request.form["price"]:
+            flash("Please enter all the fields", "error")
+        else:
+            products = Product(request.form["item"], request.form["qoantity"]), request.form["price"]
+            db.session.add(products)
+            db.session.commit()
+            flash("Records was successfully added")
+
+    return render_template("products.html")
+
+
 @app.route("/farm/<id>", methods = ["GET", "POST"])
 def farm(id):
-    farm = db.session.get(Farmer, id)
-    # farm_info = []
-    # for fi in farm:
-    #     farm_info.append(fi.name)
-    #     farm_info.append(fi.location)
-    #     farm_info.append(fi.product)
+    farm = db.get(Farmer, id)
     return render_template("farm.html", farm=farm)
     
 
