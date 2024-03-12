@@ -6,13 +6,13 @@
       Farm {{ farm.name.upper() }} is located in {{ farm.location.upper() }}.<br>
 
    </p>
-   If you are a farm {{ farm.name.upper() }}, please add your products <a href="{{ "/farm/<id>/products" }}">HERE</a><br>
+   If you are a farm {{ farm.name.upper() }}, please add your products <a href="{{ url_for('products', id=farm.id)  }}">HERE</a><br>
 
    <h2>Farm {{ farm.name.upper() }} offers:</h2>
    <p>
-      {% for item in items %}
-          <li>{{ item.name }}</li>
-          {% endfor %}
+      {% for product in products %}
+          <li>{{ product.item }}</li>
+      {% endfor %}
    </p>
 
    <br>

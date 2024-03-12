@@ -65,24 +65,23 @@ def new():
 @app.route("/farm/<id>", methods = ["GET", "POST"])
 def farm(id):
     farm = Farmer.query.get(id)
-    items = Product.query.all()
+    products = Product.query.all()
 
-    return render_template("farm.html", farm=farm, items=items)
-
+    return render_template("farm.html", farm=farm, products=products)
 
 
 @app.route("/farm/<id>/products", methods = ["GET", "POST"])
 def products(id):
     if request.method == "POST":
-        if not request.form["item"] or not request.form["quantity"] or not request.form["price"]:
+        if not request.form["product"] or not request.form["quantity"] or not request.form["price"]:
             flash("Please enter all the fields", "error")
         else:
-            products = Product(request.form["item"], request.form["quantity"], request.form["price"])
-            db.session.add(products)
+            product = Product(request.form["product"], request.form["quantity"], request.form["price"])
+            db.session.add(product)
             db.session.commit()
             flash("Records was successfully added")
 
-    return render_template("products.html", id=id, products=products)
+    return render_template("products.html", id=id)
     
 
 if __name__ == "__main__":
