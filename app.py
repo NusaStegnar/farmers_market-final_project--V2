@@ -19,7 +19,7 @@ class Farmer(db.Model):
     id = db.Column(db.Integer, primary_key=True )
     name = db.Column(db.String(120), nullable=False)
     location = db.Column(db.String(200), nullable=False)
-    #farm_product = db.relationship("Product", backref="farmer", lazy=True)
+    farm_product = db.relationship("Product", backref="farmer", lazy=True)
 
     def __init__(self, name, location):
         self.name = name
@@ -31,7 +31,7 @@ class Product(db.Model):
     item = db.Column(db.String(200))
     quantity = db.Column(db.Integer)
     price = db.Column(db.Integer)
-    #parent_id = db.Column(db.Integer, db.ForeignKey("farmer.id"), nullable=False)
+    parent_id = db.Column(db.Integer, db.ForeignKey("farmer.id"), nullable=False)
 
     def __init__(self, item, quantity, price):
         self.item = item
@@ -62,25 +62,27 @@ def new():
     return render_template("new.html")
 
 
-@app.route("/products", methods = ["GET", "POST"])
-def products():
+@app.route("/farm/<id>", methods = ["GET", "POST"])
+def farm(id):
+    farm = Farmer.query.get(id)
+    #items = Product.query.all()
+
+    return render_template("farm.html", farm=farm, id=id)
+
+
+
+@app.route("/farm/<id>/products", methods = ["GET", "POST"])
+def products(id):
     if request.method == "POST":
         if not request.form["item"] or not request.form["quantity"] or not request.form["price"]:
             flash("Please enter all the fields", "error")
         else:
-            products = Product(request.form["item"], request.form["quantity"]), request.form["price"]
+            products = Product(request.form["item"], request.form["quantity"], request.form["price"], request.form["parent_id"])
             db.session.add(products)
             db.session.commit()
             flash("Records was successfully added")
 
     return render_template("products.html")
-
-
-@app.route("/farm/<id>", methods = ["GET", "POST"])
-def farm(id):
-    farm = Farmer.query.get(id)
-    items = Product.query.all()
-    return render_template("farm.html", farm=farm, items=items)
     
 
 if __name__ == "__main__":
