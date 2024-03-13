@@ -4,6 +4,8 @@ from sqlalchemy import ForeignKey, create_engine
 from sqlalchemy.orm import sessionmaker, relationship, declarative_base, session
 from sqlalchemy.sql import text
 import sqlalchemy as sa
+import os
+
 
 
 db = SQLAlchemy()
