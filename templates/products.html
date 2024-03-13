@@ -6,7 +6,7 @@
       <h3>Farms products</h3>
  
       
-      <form action="{{ url_for ('products') }}" method="post" enctype="multipart/form-data">
+      <form action="{{ url_for ('products', id=id) }}" method="post" enctype="multipart/form-data">
          <fieldset>
             <legend>PRODUCTS:</legend>
                <label for = "name">Product</label><br>
