@@ -26,8 +26,8 @@
       </h2>
        <h3> <br>
         <p>Farms in our market are:
-          {% for farmer in farmers %}
-          <li><a href="{{ url_for ('farm', id=farmer.id)  }}">{{farmer.name}}</a></li>
+          {% for farm in farms %}
+          <li><a href="{{ url_for ('farm', id=farmer.id)  }}">{{farm.name}}</a></li>
           {% endfor %}
         </p>
       </h3>
