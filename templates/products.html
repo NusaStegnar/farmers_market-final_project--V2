@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
-
+<head>
+   <link rel="stylesheet" type="text/css" href="layout.css" >
+</head>
    <body>
    
-      <h3>Farms products</h3>
+      <h1>Farms products</h1>
  
       
-      <form action="{{ url_for ('products', id=id) }}" method="post" enctype="multipart/form-data">
+      <form action="{{ url_for('products', id=id) }}" method="post" enctype="multipart/form-data">
          <fieldset>
             <legend>PRODUCTS:</legend>
                <label for = "name">Product</label><br>

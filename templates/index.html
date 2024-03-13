@@ -1,36 +1,24 @@
 <!DOCTYPE html>
 <html lang = "en">
    <head>
-    <style> 
-      img {border-radius: 50%; }
-    </style>
-    <style> 
-      body { background-color: green; } 
-    </style>
-    <h1 style= "color: purple; font-size: 4.5em; font-weight: bold">WELCOME TO FARMERS MARKET</h1>
-    <style>
-      .center {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    </style>
+      <link rel="stylesheet" type="text/css" href="layout.css" >
+      <link rel="stylesheet" type="text/css" href="layout_index.css" >
    </head>
    <body>
-      <h2>
+    <h1>WELCOME TO OUR MARKET</h1>
+      <p>
         You are most welcome to our website where we promote local farms and their products.<br><br>
         <span style='font-size:100px;'>&#129365;</span><span style='font-size:100px;'>&#129382;</span>
         <span style='font-size:100px;'>&#128015;</span><span style='font-size:100px;'>&#128020;</span><br><br> 
-        If you are a farmer, please fill the data that our visitors will find you. <a href="{{ url_for ('new') }}">ADD FARM</a><br><br>
+        If you are a farmer, please fill the data that our visitors will find you. <a href="{{ url_for('new') }}">ADD FARM</a><br><br>
         If you are a visitor, feal free to search our database for the farmers and their products.<br>
-      </h2>
-       <h3> <br>
-        <p>Farms in our market are:
-          {% for farm in farms %}
-          <li><a href="{{ url_for ('farm', id=farm.id)  }}">{{farm.name}}</a></li>
+      </p>
+      <br>
+        <h2> Farms in our market are:</h2>
+        <p>{% for farm in farms %}
+          <li><a href="{{ url_for('farm', id=farm.id)  }}">{{farm.name}}</a></li>
           {% endfor %}
         </p>
-      </h3>
       <img href="Farmers Market" src="{{ url_for('static', filename='image/market.jpg') }}" class="center">
    </body>
 </html>
