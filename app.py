@@ -40,6 +40,7 @@ class Product(db.Model):
 with app.app_context():
     db.create_all()
 
+
 @app.route("/")
 def index():
     farms = Farm.query.all()
@@ -63,9 +64,9 @@ def new():
 @app.route("/farm/<id>", methods = ["GET", "POST"])
 def farm(id):
     farm = Farm.query.get(id)
-    products = Product.query.all()
+    #products = Product.query.all()
 
-    return render_template("farm.html", farm=farm, products=products)
+    return render_template("farm.html", farm=farm) #products=products)
 
 
 @app.route("/farm/<id>/products", methods = ["GET", "POST"])

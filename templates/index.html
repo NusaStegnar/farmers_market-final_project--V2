@@ -18,7 +18,7 @@
    </head>
    <body>
       <h2>
-        You are most welcome to our website where we promote local farmers and their products.<br><br>
+        You are most welcome to our website where we promote local farms and their products.<br><br>
         <span style='font-size:100px;'>&#129365;</span><span style='font-size:100px;'>&#129382;</span>
         <span style='font-size:100px;'>&#128015;</span><span style='font-size:100px;'>&#128020;</span><br><br> 
         If you are a farmer, please fill the data that our visitors will find you. <a href="{{ url_for ('new') }}">ADD FARM</a><br><br>
@@ -27,7 +27,7 @@
        <h3> <br>
         <p>Farms in our market are:
           {% for farm in farms %}
-          <li><a href="{{ url_for ('farm', id=farmer.id)  }}">{{farm.name}}</a></li>
+          <li><a href="{{ url_for ('farm', id=farm.id)  }}">{{farm.name}}</a></li>
           {% endfor %}
         </p>
       </h3>
