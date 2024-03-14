@@ -2,15 +2,18 @@
 <html>
    <head>
    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layout.css') }}" >
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/farmimage.css') }}" >
   
    </head>
    <body>
-	<h1>WELCOME TO FARM {{ farm.name.upper() }}</h1>
+	<h1>WELCOME TO FARM {{ farm.name.upper() }}</h1><br>
+   <p>
+   If you are a farm {{ farm.name.upper() }}, please add your products <a href="{{ url_for('products', id=farm.id)  }}">HERE</a><br>
+   </p> 
    <p>
       Farm {{ farm.name.upper() }} is located in {{ farm.location.upper() }}.<br>
 
    </p>
-   If you are a farm {{ farm.name.upper() }}, please add your products <a href="{{ url_for('products', id=farm.id)  }}">HERE</a><br>
 
    <h2>Farm {{ farm.name.upper() }} offers:</h2>
    <p>

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang = "en">
    <head>
-      <link rel="stylesheet" type="text/css" href="layout.css" >
-      <link rel="stylesheet" type="text/css" href="layout_index.css" >
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layout.css') }}" >
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layout_index.css') }}" >
    </head>
    <body>
     <h1>WELCOME TO OUR MARKET</h1>
       <p>
         You are most welcome to our website where we promote local farms and their products.<br><br>
-        <span style='font-size:100px;'>&#129365;</span><span style='font-size:100px;'>&#129382;</span>
-        <span style='font-size:100px;'>&#128015;</span><span style='font-size:100px;'>&#128020;</span><br><br> 
+        <span style='font-size:90px;'>&#129365;</span><span style='font-size:90px;'>&#129382;</span>
+        <span style='font-size:90px;'>&#128015;</span><span style='font-size:90px;'>&#128020;</span><br><br> 
         If you are a farmer, please fill the data that our visitors will find you. <a href="{{ url_for('new') }}">ADD FARM</a><br><br>
         If you are a visitor, feal free to search our database for the farmers and their products.<br>
       </p>

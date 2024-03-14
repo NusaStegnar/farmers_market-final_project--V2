@@ -1,0 +1,7 @@
+body, html {
+    background-image: url("products.jpg");
+    height: 95%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
