@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html>
-   <head>
-   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layout.css') }}" >
-   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/farmimage.css') }}" >
-  
-   </head>
-   <body>
+{% extends 'base.html' %}
+
+{% block header %}
 	<h1>WELCOME TO FARM {{ farm.name.upper() }}</h1><br>
+
+{% endblock header %}
+
+{% block content %}
    <p>
    If you are a farm {{ farm.name.upper() }}, please add your products <a href="{{ url_for('products', id=farm.id)  }}">HERE</a><br>
    </p> 
@@ -25,7 +24,7 @@
    <br>
 
    <a href="{{ '/' }}">BACK TO HOMEPAGE</a><br>
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layout.css') }}" >
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/farmimage.css') }}" >
    <br>
-   </body>
-</html>
-
+{% endblock content %}

@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layout.css') }}" >
-   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/productsimage.css') }}" >
-</head>
-   <body>
+{% extends 'base.html' %}
+
+{% block header %}
    
       <h1>Farms products</h1>
- 
+{% endblock header %}
+
+{% block content %}
       
       <form action="{{ url_for('products', id=id) }}" method="post" enctype="multipart/form-data">
          <fieldset>
@@ -35,7 +33,8 @@
       <br>
 
       <a href="{{ '/' }}">BACK TO HOMEPAGE</a><br>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layout.css') }}" >
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/productsimage.css') }}" >
       <br>
      
-   </body>
-</html>
+{% endblock content %}

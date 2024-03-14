@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang = "en">
-   <head>
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layout.css') }}" >
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layout_index.css') }}" >
-   </head>
-   <body>
-    <h1>WELCOME TO OUR MARKET</h1>
+{% extends 'base.html' %}
+
+
+{% block header %}
+  <h1>{% block title %}WELCOME TO OUR MARKET{% endblock title %}</h1>
+{% endblock header %}
+
+{% block content %}
       <p>
         You are most welcome to our website where we promote local farms and their products.<br><br>
         <span style='font-size:90px;'>&#129365;</span><span style='font-size:90px;'>&#129382;</span>
@@ -19,6 +19,8 @@
           <li><a href="{{ url_for('farm', id=farm.id)  }}">{{farm.name}}</a></li>
           {% endfor %}
         </p>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layout.css') }}" >
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layout_index.css') }}" >
       <img href="Farmers Market" src="{{ url_for('static', filename='image/market.jpg') }}" class="center">
-   </body>
-</html>
+
+{% endblock content %}
