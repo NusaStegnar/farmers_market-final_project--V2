@@ -24,6 +24,9 @@ class Farm(db.Model):
     def __init__(self, name, location):
         self.name = name
         self.location = location
+
+    def __repr__(self):
+        return "<Farm {}>".format(self.name)
         
 
 class Product(db.Model):
@@ -37,6 +40,9 @@ class Product(db.Model):
         self.name = name
         self.quantity = quantity
         self.price = price
+    
+    def __repr__(self):
+        return "<Product {}>".format(self.name)
 
 
 with app.app_context():
