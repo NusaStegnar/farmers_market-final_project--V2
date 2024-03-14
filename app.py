@@ -19,6 +19,7 @@ class Farm(db.Model):
     id = db.Column(db.Integer, primary_key=True )
     name = db.Column(db.String(120), nullable=False)
     location = db.Column(db.String(200), nullable=False)
+    products = db.relationship('Product', backref='farm', lazy=True)
     #products = db.relationship("Product", backref="farms", lazy='dynamic')
 
     def __init__(self, name, location):
@@ -34,14 +35,15 @@ class Product(db.Model):
     name = db.Column(db.String(200))
     quantity = db.Column(db.Integer)
     price = db.Column(db.Integer)
+    farm_id = db.Column(db.Integer, db.ForeignKey('farm.id'), nullable=True)
     #farm_id = db.Column(db.Integer, db.ForeignKey("farms.farms_id"))
     #farm = db.relationship("Farm")
 
-    def __init__(self, name, quantity, price):
+    def __init__(self, name, quantity, price, farm_id):
         self.name = name
         self.quantity = quantity
         self.price = price
-        #self.farm = farm
+        self.farm_id = farm_id
     
     def __repr__(self):
         return "<Product {}>".format(self.name)
@@ -74,7 +76,7 @@ def new():
 @app.route("/farm/<id>", methods = ["GET", "POST"])
 def farm(id):
     farm = Farm.query.get(id)
-    products = Product.query.all()
+    products = Product.query.filter(Product.farm_id == id)
 
     return render_template("farm.html", farm=farm, products=products)
 
@@ -85,7 +87,7 @@ def products(id):
         if not request.form["name"] or not request.form["quantity"] or not request.form["price"]:
             flash("Please enter all the fields", "error")
         else:
-            product = Product(request.form["name"], request.form["quantity"], request.form["price"])
+            product = Product(request.form["name"], request.form["quantity"], request.form["price"], id)
             db.session.add(product)
             db.session.commit()
             flash("Records was successfully added")
