@@ -20,7 +20,6 @@ class Farm(db.Model):
     name = db.Column(db.String(120), nullable=False)
     location = db.Column(db.String(200), nullable=False)
     products = db.relationship('Product', backref='farm', lazy=True)
-    #products = db.relationship("Product", backref="farms", lazy='dynamic')
 
     def __init__(self, name, location):
         self.name = name
@@ -36,8 +35,6 @@ class Product(db.Model):
     quantity = db.Column(db.Integer)
     price = db.Column(db.Integer)
     farm_id = db.Column(db.Integer, db.ForeignKey('farm.id'), nullable=True)
-    #farm_id = db.Column(db.Integer, db.ForeignKey("farms.farms_id"))
-    #farm = db.relationship("Farm")
 
     def __init__(self, name, quantity, price, farm_id):
         self.name = name
